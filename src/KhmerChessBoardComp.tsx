@@ -19,6 +19,7 @@ class KhmerChessBoardComp extends React.Component<Props> {
     const container = this.myRef.current;
     this.khmerChessBoard = new KhmerChessBoard();
     const kcb = this.khmerChessBoard;
+    kcb.pieceShadowManager.quickMove(true);
     kcb.setOptions({
       width: this.props.width,
       container,
@@ -43,6 +44,7 @@ class KhmerChessBoardComp extends React.Component<Props> {
       }
     });
 
+    kcb.playManager.hideController();
     kcb.playManager.play();
 
   }

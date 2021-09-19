@@ -1,4 +1,3 @@
-"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -14,31 +13,32 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-exports.__esModule = true;
-var react_1 = require("react");
-var khmer_chess_ai_1 = require("khmer-chess-ai");
-var khmer_chess_board_1 = require("khmer-chess-board");
-var khmer_chess_1 = require("khmer-chess");
+import { jsx as _jsx } from "react/jsx-runtime";
+import React from 'react';
+import { KhmerChessAI } from 'khmer-chess-ai';
+import { KhmerChessBoard } from 'khmer-chess-board';
+import { PIECE_COLOR_BLACK } from 'khmer-chess';
 var KhmerChessBoardComp = /** @class */ (function (_super) {
     __extends(KhmerChessBoardComp, _super);
     function KhmerChessBoardComp(props) {
         var _this = _super.call(this, props) || this;
         _this.khmerChessBoard = null;
-        _this.myRef = react_1["default"].createRef();
+        _this.myRef = React.createRef();
         return _this;
     }
     KhmerChessBoardComp.prototype.componentDidMount = function () {
         var container = this.myRef.current;
-        this.khmerChessBoard = new khmer_chess_board_1.KhmerChessBoard();
+        this.khmerChessBoard = new KhmerChessBoard();
         var kcb = this.khmerChessBoard;
+        kcb.pieceShadowManager.quickMove(true);
         kcb.setOptions({
             width: this.props.width,
-            container: container
+            container: container,
         });
         kcb.soundManager.enable();
-        var khmerChessAI = new khmer_chess_ai_1.KhmerChessAI({
+        var khmerChessAI = new KhmerChessAI({
             khmerChess: kcb.khmerChess,
-            turn: khmer_chess_1.PIECE_COLOR_BLACK
+            turn: PIECE_COLOR_BLACK,
         });
         kcb.boardManager.addBoardStatusEventListener(function (boardStatusEvent) {
             console.log(boardStatusEvent.message);
@@ -55,6 +55,7 @@ var KhmerChessBoardComp = /** @class */ (function (_super) {
                 }
             }
         });
+        kcb.playManager.hideController();
         kcb.playManager.play();
     };
     KhmerChessBoardComp.prototype.componentWillUnmount = function () {
@@ -63,8 +64,9 @@ var KhmerChessBoardComp = /** @class */ (function (_super) {
         this.khmerChessBoard = null;
     };
     KhmerChessBoardComp.prototype.render = function () {
-        return (<div className="container" ref={this.myRef}></div>);
+        return (_jsx("div", { className: "container", ref: this.myRef }, void 0));
     };
     return KhmerChessBoardComp;
-}(react_1["default"].Component));
-exports["default"] = KhmerChessBoardComp;
+}(React.Component));
+export default KhmerChessBoardComp;
+//# sourceMappingURL=KhmerChessBoardComp.js.map

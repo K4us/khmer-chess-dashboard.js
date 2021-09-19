@@ -1,19 +1,4 @@
-import KhmerChessBoardComp from './KhmerChessBoardComp';
-
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <KhmerChessBoardComp width={600} ref={(kcbc) => {
-        (window as any).kcbc = kcbc;
-      }} />
-    </div>
-  );
-}
-
-export default App;
-
+export { default as KhmerChessBoardComp } from './KhmerChessBoardComp';
 /*
  * Copyright (c) 2021, K4us
  * Author: Raksa Eng <eng.raksa@gmail.com>, K4us Net <k4us.net@gmail.com>
@@ -40,4 +25,5 @@ export default App;
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- **/
+ **/ 
+//# sourceMappingURL=out.js.map
